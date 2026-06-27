@@ -2,8 +2,8 @@
 Trabajo integrador final de Python AED
 
 # Integrantes:
-  Alavarado Rolón Analuz Agustina
-  Lezcano Olmedo Liz Rebeca
+  Alavarado Rolón Analuz Agustina,
+  Lezcano Olmedo Liz Rebeca,
   Mayol Ana Paula
 
 # Comisión: K1.4
