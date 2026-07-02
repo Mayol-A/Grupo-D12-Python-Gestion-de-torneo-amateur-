@@ -1,3 +1,5 @@
+from equipo import Equipo
+
 def mostrar_menu():
     print("\n========== TORNEO AMATEUR ==========")
     print("1. Registrar equipo")
@@ -14,13 +16,57 @@ def menu_estadisticas():
     print("2. Estadísticas por equipo")
     print("3. Volver")
 
+def buscar_equipo(equipos, nombre):
+
+    for equipo in equipos:
+
+        if equipo.nombre.lower() == nombre.lower():
+            return equipo
+
+    return None
 
 def registrar_equipo(equipos):
-    print("Función en desarrollo...")
 
+    if len(equipos) >= 16:
+        print("\nNo se pueden registrar más de 16 equipos.")
+        return
+
+    while True:
+
+        nombre = input("\nIngrese el nombre del equipo: ").strip()
+
+        if nombre == "":
+            print("El nombre no puede estar vacío.")
+            continue
+
+        if buscar_equipo(equipos, nombre):
+
+            print("Ese equipo ya está registrado.")
+            continue
+
+        break
+
+    nuevo = Equipo(nombre)
+
+    equipos.append(nuevo)
+
+    print(f"\nEquipo '{nombre}' registrado correctamente.")
 
 def mostrar_equipos(equipos):
-    print("Función en desarrollo...")
+
+    if len(equipos) == 0:
+        print("\nNo hay equipos registrados.")
+        return
+
+    print("\n====== EQUIPOS REGISTRADOS ======\n")
+
+    contador = 1
+
+    for equipo in equipos:
+
+        print(f"{contador}. {equipo.nombre}")
+
+        contador += 1
 
 
 def registrar_partido(equipos, partidos):
