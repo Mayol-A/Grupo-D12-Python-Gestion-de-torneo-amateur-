@@ -58,3 +58,7 @@ La aplicación fue desarrollada utilizando estructuras condicionales y repetitiv
 
 # Instrucciones de ejecución
    *Tener instalado Python 3.11 o superior
+   *No es necesario instalar librerias adicionales 
+     *Abrir una terminar o consola
+     *Acceder a la carpeta donde se encuentra el sistemas
+     *Ejecutar el programa con el siguiente comando: python main.py
