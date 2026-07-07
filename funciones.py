@@ -69,7 +69,6 @@ def registrar_equipo(equipos):
     print(f"\nEquipo '{nombre}' registrado correctamente.")
     print(f"Equipos registrados: {len(equipos)}/{MAX_EQUIPOS}")
 
-
 def mostrar_equipos(equipos):
 
     if len(equipos) == 0:
@@ -197,12 +196,85 @@ def registrar_partido(equipos, partidos):
 
 
 def mostrar_tabla(equipos):
-    print("Función en desarrollo...")
 
+    if len(equipos) == 0:
+        print("\nNo hay equipos registrados.")
+        return
+
+    equipos_ordenados = sorted(
+        equipos,
+        key=lambda equipo: (equipo.pts, equipo.dg, equipo.gf),
+        reverse=True
+    )
+
+    print("\n================ TABLA DE POSICIONES ================\n")
+
+    print("Pos Equipo\tPJ PG PE PP GF GC DG PTS")
+
+    posicion = 1
+
+    for equipo in equipos_ordenados:
+
+        print(f"{posicion}. {equipo.nombre}\t{equipo.pj}  {equipo.pg}  {equipo.pe}  {equipo.pp}  {equipo.gf}  {equipo.gc}  {equipo.dg}  {equipo.pts}")
+
+        posicion += 1
 
 def estadisticas_generales(equipos):
-    print("Función en desarrollo...")
+
+    if len(equipos) == 0:
+        print("\nNo hay equipos registrados.")
+        return
+
+    mas_goles = equipos[0]
+    menos_goles_contra = equipos[0]
+    mas_victorias = equipos[0]
+    mas_empates = equipos[0]
+    mas_derrotas = equipos[0]
+
+    for equipo in equipos:
+
+        if equipo.gf > mas_goles.gf:
+            mas_goles = equipo
+
+        if equipo.gc < menos_goles_contra.gc:
+            menos_goles_contra = equipo
+
+        if equipo.pg > mas_victorias.pg:
+            mas_victorias = equipo
+
+        if equipo.pe > mas_empates.pe:
+            mas_empates = equipo
+
+        if equipo.pp > mas_derrotas.pp:
+            mas_derrotas = equipo
+
+    print("\n========== ESTADÍSTICAS GENERALES ==========\n")
+
+    print(f"Equipo con más goles a favor: {mas_goles.nombre} ({mas_goles.gf})")
+    print(f"Equipo con menos goles en contra: {menos_goles_contra.nombre} ({menos_goles_contra.gc})")
+    print(f"Equipo con más victorias: {mas_victorias.nombre} ({mas_victorias.pg})")
+    print(f"Equipo con más empates: {mas_empates.nombre} ({mas_empates.pe})")
+    print(f"Equipo con más derrotas: {mas_derrotas.nombre} ({mas_derrotas.pp})")
 
 
 def estadisticas_por_equipo(equipos):
-    print("Función en desarrollo...")
+
+    if len(equipos) == 0:
+        print("\nNo hay equipos registrados.")
+        return
+
+    print("\n========== ESTADÍSTICAS POR EQUIPO ==========\n")
+
+    for equipo in equipos:
+
+        if equipo.pj == 0:
+            promedio = 0
+        else:
+            promedio = equipo.gf / equipo.pj
+
+        print(f"Equipo: {equipo.nombre}")
+        print(f"Partidos jugados: {equipo.pj}")
+        print(f"Goles convertidos: {equipo.gf}")
+        print(f"Penales convertidos: {equipo.penales_convertidos}")
+        print(f"Promedio de goles por partido: {promedio:.2f}")
+        print("-------------------------------------------")
